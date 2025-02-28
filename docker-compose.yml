@@ -1,0 +1,47 @@
+services:
+  qurio_service:
+    container_name: qurio_service
+    image: qurio-service:latest
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    environment:
+      - POSTGRES_HOST=qurio_db
+  qurio_db:
+    container_name: qurio_postgres
+    image: postgres:17
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docker/postgres/db-data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_PASSWORD=abc123
+      - POSTGRES_USER=qurio
+      - POSTGRES_DB=quriodb
+
+  qurio_minio:
+    image: minio/minio:latest
+    container_name: qurio_minio
+    ports:
+      - "19000:9000"
+    volumes:
+      - ./docker/s3/data:/data
+    environment:
+      MINIO_ACCESS_KEY: s3accesskey
+      MINIO_SECRET_KEY: s3secretkey
+    command: minio server /data
+
+
+  quorio_pgadmin:
+    image: dpage/pgadmin4:9
+    container_name: qurio_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@pgadmin.com
+      PGADMIN_DEFAULT_PASSWORD: abc123
+      PGADMIN_LISTEN_PORT: 80
+    ports:
+      - "15432:80"
+    volumes:
+      - ./docker/pgadmin:/var/lib/pgadmin
+    depends_on:
+      - qurio_db
