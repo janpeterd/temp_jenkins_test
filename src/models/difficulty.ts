@@ -1,0 +1,3 @@
+interface Difficulty {
+    difficulty: string;
+}
