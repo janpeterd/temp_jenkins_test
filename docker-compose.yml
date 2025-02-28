@@ -1,0 +1,7 @@
+services:
+  qurio-ui:
+    container_name: qurio_ui
+    image: qurio-ui:latest
+    restart: on-failure
+    ports:
+      - "80:80"
