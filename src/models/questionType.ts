@@ -1,0 +1,3 @@
+interface QuestionType {
+    type: string;
+}
