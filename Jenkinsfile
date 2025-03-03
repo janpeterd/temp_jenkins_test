@@ -34,7 +34,7 @@ pipeline {
                     withSonarQubeEnv('sq') {
                         sh """
                             docker run --rm \
-                            -e SONAR_HOST_URL=http://host.docker.internal:9001 \
+                            -e SONAR_HOST_URL=\$SONAR_HOST_URL \
                             -e SONAR_LOGIN=\$SONAR_LOGIN \
                             -v '.:/usr/src' \
                             sonarsource/sonar-scanner-cli \
