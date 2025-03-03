@@ -1,4 +1,4 @@
 export enum QuestionTypeEnum {
-  open,
-  multiplechoice,
+  open = "open",
+  multiplechoice = "multiplechoice",
 }
