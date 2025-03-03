@@ -28,6 +28,15 @@ pipeline {
                 }
             }
         }
+        stage ('SonarQube scan') {
+            steps {
+                script {
+                    withSonarQubeEnv('SonarQube') {
+                        sh "docker run --rm -e SONAR_HOST_URL=http://host.docker.internal:9001 -e SONAR_LOGIN=\$SONAR_LOGIN -e SONAR_SCANNER_OPTS='-Dsonar.projectKey=\$PROJECT_KEY' -Dsonar.sources=. -Dsonar.exclusions='node_modules,typings/**'  -v '.:/usr/src' sonarsource/sonar-scanner-cli"
+                    }
+                }
+            }
+        }
         stage('Docker Build') {
             steps {
                 script {
