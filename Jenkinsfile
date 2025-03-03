@@ -34,10 +34,7 @@ pipeline {
                     sh "ls /opt"
                     withSonarQubeEnv('sq') {
                         sh """
-                            /opt/sonar-scanner/bin/sonar-scanner \
-                            -Dsonar.projectKey=\$PROJECT_KEY \
-                            -Dsonar.sources=. \
-                            -Dsonar.exclusions='node_modules,typings/**'
+                            /opt/sonar-scanner/bin/sonar-scanner
                         """
                     }
                 }
