@@ -34,7 +34,8 @@ pipeline {
                     sh "ls /opt"
                     withSonarQubeEnv('sq') {
                         sh """
-                            /opt/sonar-scanner/bin/sonar-scanner
+                            /opt/sonar-scanner/bin/sonar-scanner -Dproject.settings=sonar-project.properties
+
                         """
                     }
                 }
