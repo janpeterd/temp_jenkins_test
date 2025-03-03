@@ -1,3 +1,5 @@
-interface UserType {
-    type: string;
+import { UserTypeEnum } from "@/enums/userType";
+
+export interface UserType {
+  type: UserTypeEnum;
 }

@@ -1,28 +1,12 @@
-interface Invoice {
-    user : {
-        firstname: string;
-        lastname: string;
-        email: string;
-    }
-    quiz: {
-        name: string;
-        creationDate: Date;
-        actualPrice: number;
-        isPrivate: boolean;
-        photoUrl: string;
-        showInstantResult: boolean;
-        calculateScore: boolean;
-        attempts: number;
-        dateScoreRelease: Date;
-        description: string;
-        isVisible: boolean;
-        isDailyQuiz: boolean;
-    }
-    appliedPrice: DoubleRange;
-    date: Date;
-    company : {
-        name: string;
-        logoUrl: string;
-    }
-    documentUrl: string;
+import { Company } from "./company";
+import { Quiz } from "./quiz";
+import { SimpleUser } from "./simpleUser";
+
+export interface Invoice {
+  user: SimpleUser;
+  quiz: Quiz;
+  appliedPrice: DoubleRange;
+  date: Date;
+  company: Company;
+  documentUrl: string;
 }

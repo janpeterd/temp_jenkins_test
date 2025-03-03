@@ -1,14 +1,12 @@
-interface User {
-    firstname: string;
-    lastname: string;
-    email: string;
-    password: string;
-    wantsDailyQuiz: boolean;
-    company: {
-        name: string;
-        logoUrl: string;
-    }
-    userType: {
-        type: string;
-    }
+import { UserTypeEnum } from "@/enums/userType";
+import { Company } from "./company";
+
+export interface User {
+  firstname: string;
+  lastname: string;
+  email: string;
+  password: string;
+  wantsDailyQuiz: boolean;
+  company: Company;
+  userType: UserTypeEnum;
 }

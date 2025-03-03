@@ -1,9 +1,8 @@
-interface QuestionAnswer {
-    answer: string;
-    isCorrect: boolean;
-    question: {
-        question: string;
-        creationDate: Date;
-    }
-    isCaseSensitive: boolean;
+import { Question } from "./question";
+
+export interface QuestionAnswer {
+  answer: string;
+  isCorrect: boolean;
+  question: Question;
+  isCaseSensitive: boolean;
 }

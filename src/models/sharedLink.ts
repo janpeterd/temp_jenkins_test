@@ -1,18 +1,7 @@
-interface SharedLink {
-    linkUrl: string;
-    quiz: {
-        name: string;
-        creationDate: Date;
-        actualPrice: number;
-        isPrivate: boolean;
-        photoUrl: string;
-        showInstantResult: boolean;
-        calculateScore: boolean;
-        attempts: number;
-        dateScoreRelease: Date;
-        description: string;
-        isVisible: boolean;
-        isDailyQuiz: boolean;
-    }
-    name: string;
+import { Quiz } from "./quiz";
+
+export interface SharedLink {
+  linkUrl: string;
+  quiz: Quiz;
+  name: string;
 }

@@ -6,11 +6,11 @@ import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar.tsx";
 import { AppSidebar } from "./sidebar.tsx";
 
 createRoot(document.getElementById("root")!).render(
-  <SidebarProvider>
-    <StrictMode>
+  <StrictMode>
+    <SidebarProvider>
       <AppSidebar />
       <SidebarTrigger />
       <App />
-    </StrictMode>
-  </SidebarProvider>,
+    </SidebarProvider>
+  </StrictMode>,
 );

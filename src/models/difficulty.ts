@@ -1,3 +1,5 @@
-interface Difficulty {
-    difficulty: string;
+import { DifficultyEnum } from "@/enums/difficulty";
+
+export interface Difficulty {
+  difficulty: DifficultyEnum;
 }
