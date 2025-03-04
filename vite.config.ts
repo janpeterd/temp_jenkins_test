@@ -1,21 +1,18 @@
-import path from "path"
-import { defineConfig } from 'vite'
+import { reactRouter } from "@react-router/dev/vite";
+import { defineConfig } from "vite";
+import tailwindcss from "@tailwindcss/vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 import react from '@vitejs/plugin-react'
+
 const ReactCompilerConfig = { /* ... */ };
 
-
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react({
+  plugins: [tailwindcss(), reactRouter(), tsconfigPaths(), react({
     babel: {
       plugins: [
         ["babel-plugin-react-compiler", ReactCompilerConfig],
       ],
     },
-  })],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
-})
+  }),
+],
+});

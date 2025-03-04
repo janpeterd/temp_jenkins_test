@@ -1,32 +1,22 @@
-# Fetching the latest node image on apline linux
-FROM node:alpine AS builder
-
-# Declaring env
-ENV NODE_ENV production
-
-# Setting up the work directory
+FROM node:20-alpine AS development-dependencies-env
+COPY . /app
 WORKDIR /app
+RUN npm ci
 
-# Installing dependencies
-COPY ./package*.json ./
-RUN npm install --include=dev
+FROM node:20-alpine AS production-dependencies-env
+COPY ./package.json package-lock.json /app/
+WORKDIR /app
+RUN npm ci --omit=dev
 
-# Copying all the files in our project
-COPY . .
-
-# Building our application
+FROM node:20-alpine AS build-env
+COPY . /app/
+COPY --from=development-dependencies-env /app/node_modules /app/node_modules
+WORKDIR /app
 RUN npm run build
 
-# Fetching the latest nginx image
-FROM nginx
-
-# Remove the default Nginx welcome page
-RUN rm -rf /usr/share/nginx/html/*
-
-# Copying built assets from builder
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Copying our nginx.conf
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-EXPOSE 80
+FROM node:20-alpine
+COPY ./package.json package-lock.json /app/
+COPY --from=production-dependencies-env /app/node_modules /app/node_modules
+COPY --from=build-env /app/build /app/build
+WORKDIR /app
+CMD ["npm", "run", "start"]
