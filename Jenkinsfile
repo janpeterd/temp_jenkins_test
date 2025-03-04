@@ -13,10 +13,18 @@ pipeline {
                 }
             }
         }
+        stage('Build') {
+            steps {
+                script {
+                    sh "npm run build"
+                }
+            }
+
+        }
         stage('Run the UI') {
             steps {
                 script {
-                    sh "npm run dev &"
+                    sh "npm run start &"
                 }
             }
 
