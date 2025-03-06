@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'jp-jenkinsfile',  url: 'git@bitbucket.org:xploregroup/qurio-service.git'
+                git branch: 'jp-jenkinsfile', credentialsId: '99f2f311-27c0-4a12-9bae-6ae66afe1ac9', url: 'git@bitbucket.org:xploregroup/qurio-service.git'
             }
         }
 
@@ -22,7 +22,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    def dockerHubCredentialsId = 'a3ef8e6c-2a4c-4030-82ac-1f1126b1fc71'
+                    def dockerHubCredentialsId = 'd270cbff-acb9-4096-a6d9-8ad05ba3442e'
 
                     sh "docker build -t janpeterd/qurio-service:latest ."
 
