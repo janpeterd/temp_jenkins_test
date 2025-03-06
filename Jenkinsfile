@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'jp-jenkinsfile', credentialsId: 'dd344a3e-c1b4-4004-a553-a0fc19625a9d', url: 'git@bitbucket.org:xploregroup/qurio-ui.git'
+                git branch: 'jp-jenkinsfile', credentialsId: '99f2f311-27c0-4a12-9bae-6ae66afe1ac9', url: 'git@bitbucket.org:xploregroup/qurio-ui.git'
             }
         }
         stage('Install dependencies') {
@@ -59,7 +59,7 @@ pipeline {
         stage ('Docker push') {
             steps {
                 script {
-                    def dockerHubCredentialsId = 'a3ef8e6c-2a4c-4030-82ac-1f1126b1fc71'
+                    def dockerHubCredentialsId = 'd270cbff-acb9-4096-a6d9-8ad05ba3442e'
                     withCredentials([usernamePassword(credentialsId: dockerHubCredentialsId, usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
                         sh "docker login -u \$DOCKERHUB_USERNAME -p \$DOCKERHUB_PASSWORD"
                         sh "docker push janpeterd/qurio-ui:latest"
