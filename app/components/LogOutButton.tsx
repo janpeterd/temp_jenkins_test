@@ -1,11 +1,9 @@
-import { AuthContext } from "~/context/AuthContext";
+import { useAuth } from "~/context/AuthContext";
 import { Button } from "./ui/button";
-import { useContext } from "react";
 import { AlertDialogPopup } from "./ConfirmDialog";
 
 export default function LogOutButton() {
-  const { token } = useContext(AuthContext);
-  console.log("Token", token);
+  const { token } = useAuth();
   // get form by reference
   const onSubmit = () => {
     const form = document.querySelector("form");

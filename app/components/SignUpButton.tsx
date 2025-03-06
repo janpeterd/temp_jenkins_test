@@ -6,7 +6,6 @@ import { Plus } from "lucide-react";
 
 export default function SignUpButton() {
   const { token } = useContext(AuthContext);
-  console.log("Token", token);
   const navigate = useNavigate();
   return (
     !token && (

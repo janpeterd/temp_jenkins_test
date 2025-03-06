@@ -2,15 +2,16 @@ import { authCookie } from "~/cookies.server";
 import type { Route } from "./+types/route";
 import { Outlet, redirect } from "react-router";
 import { UserTypeEnum } from "~/enums/userType";
+import type { UserResponseDto } from "~/models/DTOs/UserResponseDto";
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await authCookie.parse(cookieHeader)) || {};
-  const user = cookie.user;
+  const user: UserResponseDto = cookie.user;
   if (
-    user != null &&
-    (user.type !== UserTypeEnum.companyClient ||
-      user.type !== UserTypeEnum.companyAdministrator)
+    user == null ||
+    (user.userType !== UserTypeEnum.companyClient &&
+      user.userType !== UserTypeEnum.companyAdministrator)
   ) {
     return redirect("/login");
   }

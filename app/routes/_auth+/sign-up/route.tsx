@@ -25,6 +25,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
       }),
     };
   }
+  // This is a fake signup
   await setTimeout(1000);
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await authCookie.parse(cookieHeader)) || {};

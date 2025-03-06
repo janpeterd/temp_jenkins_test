@@ -1,9 +1,8 @@
-import { useContext } from "react";
 import LogOutButton from "~/components/LogOutButton";
-import { AuthContext } from "~/context/AuthContext";
+import { useAuth } from "~/context/AuthContext";
 
 export default function Test() {
-  const auth = useContext(AuthContext);
+  const auth = useAuth();
   return (
     <div>
       <div className="w-full rounded-xl bg-white p-4">

@@ -16,6 +16,7 @@ import React, { useEffect } from "react";
 import { SearchProvider } from "./context/SearchContext";
 import { getToast } from "remix-toast";
 import { Toaster, toast as notify } from "sonner";
+import { AuthProvider } from "./context/AuthContext";
 
 export function meta() {
   return [
@@ -75,12 +76,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <SearchProvider>
-          {children}
-          <Toaster richColors />
-          <ScrollRestoration />
-          <Scripts />
-        </SearchProvider>
+        <AuthProvider>
+          <SearchProvider>
+            {children}
+            <Toaster richColors />
+            <ScrollRestoration />
+            <Scripts />
+          </SearchProvider>
+        </AuthProvider>
       </body>
     </html>
   );

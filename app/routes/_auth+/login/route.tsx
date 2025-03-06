@@ -26,6 +26,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
     return { lastResult: submission.reply() };
   }
 
+  // This is a fake login, replace this with your own login logic
   if (submission.value.email !== "name@example.com") {
     return {
       lastResult: submission.reply({

@@ -1,12 +1,10 @@
-import { AuthContext } from "~/context/AuthContext";
+import { useAuth } from "~/context/AuthContext";
 import { Button } from "./ui/button";
-import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { LogIn } from "lucide-react";
 
 export default function LogInButton() {
-  const { token } = useContext(AuthContext);
-  console.log("Token", token);
+  const { token } = useAuth();
   const navigate = useNavigate();
   return (
     !token && (

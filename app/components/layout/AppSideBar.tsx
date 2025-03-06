@@ -33,9 +33,7 @@ const items = [
   },
 ];
 export default function AppSideBar({ user }: { user?: UserResponseDto }) {
-  console.log("user", user);
   const isMobile = useIsMobile();
-  console.log(isMobile);
   return (
     <Sidebar
       className={`top-16 h-[calc(100%-4rem)] border-none py-2 ${isMobile ? "from-primary-gradient-from to-primary-gradient-to border-none bg-gradient-to-b" : ""}`}
