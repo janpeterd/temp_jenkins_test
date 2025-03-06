@@ -1,7 +1,6 @@
 export enum UserTypeEnum {
-  general = "general",
-  private = "private",
-  companyClient = "companyClient",
-  companyAdministrator = "companyAdministrator",
-  systemAdministrator = "systemAdministrator",
+  user = "USER",
+  companyClient = "COMPANY_CLIENT",
+  companyAdministrator = "COMPANY_ADMIN",
+  admin = "ADMIN",
 }

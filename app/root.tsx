@@ -1,15 +1,21 @@
 import {
+  data,
   isRouteErrorResponse,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
+  type LoaderFunctionArgs,
 } from "react-router";
 
 import type { Route } from "./+types/root";
 import "./app.css";
-import React from "react";
+import React, { useEffect } from "react";
+import { SearchProvider } from "./context/SearchContext";
+import { getToast } from "remix-toast";
+import { Toaster, toast as notify } from "sonner";
 
 export function meta() {
   return [
@@ -34,11 +40,32 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap",
   },
 ];
 
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  // Extracts the toast from the request
+  const { toast, headers } = await getToast(request);
+  // Important to pass in the headers so the toast is cleared properly
+  return data({ toast }, { headers });
+};
+
 export function Layout({ children }: { children: React.ReactNode }) {
+  const { toast } = useLoaderData<typeof loader>();
+  // Hook to show the toasts
+  useEffect(() => {
+    if (toast?.type === "error") {
+      notify.error(toast.message);
+    }
+    if (toast?.type === "success") {
+      notify.success(toast.message);
+    }
+    if (toast?.type === "info") {
+      notify.info(toast.message);
+    }
+  }, [toast]);
+
   return (
     <html lang="en">
       <head>
@@ -48,9 +75,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
-        <ScrollRestoration />
-        <Scripts />
+        <SearchProvider>
+          {children}
+          <Toaster richColors />
+          <ScrollRestoration />
+          <Scripts />
+        </SearchProvider>
       </body>
     </html>
   );

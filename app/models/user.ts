@@ -1,5 +1,5 @@
-import { UserTypeEnum } from "@/enums/userType";
-import { Company } from "./company";
+import { UserTypeEnum } from "~/enums/userType";
+import type { Company } from "./company";
 
 export interface User {
   firstname: string;
@@ -9,4 +9,5 @@ export interface User {
   wantsDailyQuiz: boolean;
   company: Company;
   userType: UserTypeEnum;
+  avatarUrl: string;
 }

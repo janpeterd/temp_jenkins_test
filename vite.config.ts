@@ -1,18 +1,25 @@
 import { reactRouter } from "@react-router/dev/vite";
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
+import { reactRouterDevTools } from "react-router-devtools";
 import tsconfigPaths from "vite-tsconfig-paths";
-import react from '@vitejs/plugin-react'
-
-const ReactCompilerConfig = { /* ... */ };
+import babel from "vite-plugin-babel";
 
 export default defineConfig({
-  plugins: [tailwindcss(), reactRouter(), tsconfigPaths(), react({
-    babel: {
-      plugins: [
-        ["babel-plugin-react-compiler", ReactCompilerConfig],
-      ],
+  plugins: [
+    tailwindcss(),
+    tsconfigPaths(),
+    {
+      ...babel({
+        filter: /\.tsx?$/,
+        babelConfig: {
+          presets: ["@babel/preset-typescript"],
+          plugins: ["babel-plugin-react-compiler"],
+        },
+      }),
+      apply: "build",
     },
-  }),
-],
+    reactRouterDevTools(),
+    reactRouter(),
+  ],
 });

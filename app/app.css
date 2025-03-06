@@ -5,7 +5,11 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: "Roboto", ui-sans-serif, system-ui, sans-serif,
+  --font-sans:
+    "Roboto", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-racing:
+    "Racing Sans One", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
@@ -19,20 +23,20 @@ body {
 }
 
 :root {
-  --background: oklch(1 0 0);
+  --background: oklch(94.57% 0.0217 256.73);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: oklch(57.07% 0.2353 263.31);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --accent: oklch(61.87% 0.2096 317.53);
+  --accent-foreground: oklch(0% 0 317.53);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
@@ -44,14 +48,16 @@ body {
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar: oklch(100% 0 102.07 / 0%);
+  --sidebar-foreground: oklch(100% 0 263.31);
   --sidebar-primary: oklch(0.205 0 0);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --primary-gradient-from: oklch(57.07% 0.2353 263.31);
+  --primary-gradient-to: oklch(39.45% 0.2333 263.28);
 }
 
 .dark {
@@ -87,6 +93,8 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+  --primary-gradient-to: oklch(56.25% 0.2316 263.28);
+  --primary-gradient-from: oklch(57.07% 0.2353 263.31);
 }
 
 @theme inline {
@@ -126,6 +134,8 @@ body {
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-primary-gradient-to: var(--primary-gradient-to);
+  --color-primary-gradient-from: var(--primary-gradient-from);
 }
 
 @layer base {
@@ -135,4 +145,8 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+* {
+  /* border: 1px solid red; */
 }
