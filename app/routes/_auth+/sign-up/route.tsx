@@ -1,5 +1,4 @@
 import { parseWithZod } from "@conform-to/zod";
-import { setTimeout } from "node:timers/promises";
 import { Link } from "react-router";
 import { Card } from "~/components/ui/card";
 import type { Route } from "./+types/route";
@@ -26,7 +25,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
     };
   }
   // This is a fake signup
-  await setTimeout(1000);
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await authCookie.parse(cookieHeader)) || {};
   cookie.jwt = "fake-token12345";

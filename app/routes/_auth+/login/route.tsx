@@ -1,5 +1,4 @@
 import { parseWithZod } from "@conform-to/zod";
-import { setTimeout } from "node:timers/promises";
 import { z } from "zod";
 import { Card } from "~/components/ui/card";
 import type { Route } from "./+types/route";
@@ -34,7 +33,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
       }),
     };
   }
-  await setTimeout(1000); // simulate network delay
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   const cookieHeader = request.headers.get("Cookie");
   const cookie = (await authCookie.parse(cookieHeader)) || {};
   cookie.jwt = "fake-token12345";
@@ -48,7 +47,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
   }
   cookie.user = user;
 
-  throw await redirectWithSuccess("/home", "Sucesfully Logged In!", {
+  throw await redirectWithSuccess("/home", "Successfully Logged In!", {
     headers: {
       "Set-Cookie": await authCookie.serialize(cookie),
     },

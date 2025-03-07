@@ -1,5 +1,5 @@
 import { parseWithZod } from "@conform-to/zod";
-import { setTimeout } from "node:timers/promises";
+import { setTimeout } from "node:timers";
 import { Link } from "react-router";
 import { dataWithSuccess } from "remix-toast";
 import { z } from "zod";
@@ -27,7 +27,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
       }),
     };
   }
-  await setTimeout(1000);
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   return dataWithSuccess(
     { lastResult: submission.reply({ resetForm: true }) },
     {
