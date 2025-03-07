@@ -9,7 +9,7 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 script {
-                    sh "npm install --include=dev"
+                    sh "npm install --include=dev --legacy-peer-deps"
                 }
             }
         }
