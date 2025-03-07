@@ -1,18 +1,19 @@
 import { useAuth } from "~/context/AuthContext";
 import { Button } from "./ui/button";
 import { AlertDialogPopup } from "./ConfirmDialog";
+import React from "react";
 
 export default function LogOutButton() {
+  const formRef = React.useRef<HTMLFormElement>(null);
   const { token } = useAuth();
-  // get form by reference
   const onSubmit = () => {
-    const form = document.querySelector("form");
+    const form = formRef.current;
     form?.submit();
   };
 
   return (
     token && (
-      <form method="post" action="/logout">
+      <form method="post" action="/logout" ref={formRef}>
         <AlertDialogPopup
           title="Log out"
           description="Are you sure you want to log out?"

@@ -12,7 +12,6 @@ import {
 } from "~/components/ui/sidebar";
 import type { UserResponseDto } from "~/models/DTOs/UserResponseDto";
 import { NavUser } from "../NavUser";
-import { useIsMobile } from "~/hooks/use-mobile";
 import { Link } from "react-router";
 // Menu items.
 const items = [
@@ -33,10 +32,9 @@ const items = [
   },
 ];
 export default function AppSideBar({ user }: { user?: UserResponseDto }) {
-  const isMobile = useIsMobile();
   return (
     <Sidebar
-      className={`top-16 h-[calc(100%-4rem)] border-none py-2 ${isMobile ? "from-primary-gradient-from to-primary-gradient-to border-none bg-gradient-to-b" : ""}`}
+      className="from-primary-gradient-from to-primary-gradient-to top-16 h-[calc(100%-4rem)] border-none bg-gradient-to-b py-2 md:bg-none"
       collapsible="icon"
     >
       <SidebarContent>

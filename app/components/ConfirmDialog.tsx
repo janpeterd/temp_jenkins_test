@@ -12,8 +12,8 @@ import { Button } from "./ui/button";
 
 export function AlertDialogPopup({
   children,
-  title = "Are you sure?",
-  description = "This action cannot be undone.",
+  title,
+  description,
   cancelText = "Cancel",
   confirmText = "Confirm",
   onSubmit,

@@ -1,4 +1,4 @@
-import LogoText from "../LogoText.";
+import LogoText from "../LogoText";
 import Search from "../Search";
 import LogOutButton from "../LogOutButton";
 import { SidebarTrigger } from "../ui/sidebar";

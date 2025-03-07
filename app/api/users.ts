@@ -10,9 +10,7 @@ export const getUsers = async () => {
 export const getUserByEmail = async (email: string) => {
   // return await api.get(`/users/${email}`);
   // mock response
-  setTimeout(() => {
-    console.log("getUserByEmail", email);
-  }, 1000);
+  setTimeout(() => {}, 1000);
   const user: UserResponseDto = {
     email,
     firstname: "John",
