@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     sh "npx playwright install"
-                    sh "npx playwright test"
+                    sh "VITE_FRONTEND_URL='http://localhost:3000' npx playwright test"
                 }
             }
         }
