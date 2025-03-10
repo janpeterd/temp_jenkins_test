@@ -2,7 +2,6 @@ import { test, expect } from "@playwright/test";
 import { UserTypeEnum } from "~/enums/userType";
 import type { UserResponseDto } from "~/models/DTOs/UserResponseDto";
 
-const url = "http://localhost:3000";
 const getMockUser = (userType: UserTypeEnum) => {
   const user: UserResponseDto = {
     email: "name@example.com",
@@ -17,12 +16,12 @@ const getMockUser = (userType: UserTypeEnum) => {
 };
 
 test("root should redirect to /home", async ({ page }) => {
-  await page.goto(`${url}/`);
+  await page.goto(`/`);
   expect(page.url()).toContain("/home"); // redirected
 });
 
 test("unauthorized user cannot access restricted page", async ({ page }) => {
-  await page.goto(`${url}/test`);
+  await page.goto(`/test`);
 
   expect(page.url()).toContain("/login"); // redirected
 });
@@ -45,7 +44,7 @@ test("authorized user can access restricted page", async ({
     },
   ]);
 
-  await page.goto(`${url}/test`);
+  await page.goto(`/test`);
 
   expect(page.url()).toContain("/test");
 });
@@ -68,7 +67,7 @@ test("authorized, but wrong role cannot access protected page", async ({
     },
   ]);
 
-  await page.goto(`${url}/dashboard`);
+  await page.goto(`/dashboard`);
 
   expect(page.url()).toContain("/login"); // redirected
 });
@@ -91,7 +90,7 @@ test("authorized and correct role can access protected page", async ({
     },
   ]);
 
-  await page.goto(`${url}/dashboard`);
+  await page.goto(`/dashboard`);
 
   expect(page.url()).toContain("/dashboard");
 });
