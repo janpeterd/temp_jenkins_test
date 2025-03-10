@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', credentialsId: '99f2f311-27c0-4a12-9bae-6ae66afe1ac9', url: 'git@bitbucket.org:xploregroup/qurio-service.git'
+                git branch: env.BRANCH_NAME, credentialsId: '99f2f311-27c0-4a12-9bae-6ae66afe1ac9', url: 'git@bitbucket.org:xploregroup/qurio-service.git'
             }
         }
 
