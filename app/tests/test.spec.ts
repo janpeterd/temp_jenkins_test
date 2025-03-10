@@ -17,7 +17,7 @@ const getMockUser = (userType: UserTypeEnum) => {
 };
 
 test("root should redirect to /home", async ({ page }) => {
-  await page.goto("/");
+  await page.goto(`${url}/`);
   expect(page.url()).toContain("/home"); // redirected
 });
 
